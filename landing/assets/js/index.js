@@ -1,84 +1,95 @@
-document.addEventListener("click", (e) => {
-  if (
-    e.target.tagName === "A" &&
-    e.target.getAttribute("href").startsWith("#")
-  ) {
-    e.preventDefault();
-    const target = e.target.getAttribute("href");
-    smoothScroll(target, 1000);
-  }
-});
+// Add random shapes to the background
+function addRandomShapes() {
+  const shapes = ["circle", "square", "triangle"];
+  const colors = ["#4831D4", "#CCF381", "#FFFFFF"];
+  const containers = document.querySelectorAll(".random-shapes");
 
-const menuIcon = document.getElementById("menu-icon");
-const navbar = document.getElementById("navbar");
-
-menuIcon.addEventListener("click", toggleNavbar);
-
-function toggleNavbar() {
-  var navbar = document.getElementById("navbar");
-  var menuIcon = document.getElementById("menu-icon");
-  navbar.classList.toggle("expanded");
-  menuIcon.classList.toggle("open");
-
-  var isExpanded = menuIcon.getAttribute("aria-expanded") === "true" || false;
-  menuIcon.setAttribute("aria-expanded", !isExpanded);
-}
-
-// Close navbar when a link is clicked (for better UX on mobile)
-const navLinks = document.querySelectorAll("nav ul li a");
-
-navLinks.forEach((link) => {
-  link.addEventListener("click", closeNavbarOnLinkClick);
-});
-
-function closeNavbarOnLinkClick() {
-  if (navbar.classList.contains("expanded")) {
-    navbar.classList.remove("expanded");
-    menuIcon.classList.remove("open");
-  }
-}
-
-// Smooth Scrolling
-function smoothScroll(target, duration) {
-  if ("scrollBehavior" in document.documentElement.style) {
-    // Если браузер поддерживает scroll-behavior, используем его
-    window.scrollTo({
-      top: document.querySelector(target).offsetTop - 70, // Adjust for header height
-      behavior: "smooth",
-    });
-  } else {
-    // Если scroll-behavior не поддерживается, используем JavaScript-анимацию
-    const targetElement = document.querySelector(target);
-    const targetPosition =
-      targetElement.getBoundingClientRect().top + window.pageYOffset - 70; // Adjust for header height
-    const startPosition = window.pageYOffset;
-    const distance = targetPosition - startPosition;
-    let startTime = null;
-
-    function ease(t, b, c, d) {
-      t /= d / 2;
-      if (t < 1) return (c / 2) * t * t + b;
-      t--;
-      return (-c / 2) * (t * (t - 2) - 1) + b;
+  containers.forEach((container) => {
+    for (let i = 0; i < 20; i++) {
+      const shape = document.createElement("div");
+      shape.classList.add("shape");
+      const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
+      shape.style.backgroundColor =
+        colors[Math.floor(Math.random() * colors.length)];
+      shape.style.width = `${Math.random() * 30 + 10}px`;
+      shape.style.height = shape.style.width;
+      shape.style.borderRadius =
+        randomShape === "circle"
+          ? "50%"
+          : randomShape === "square"
+          ? "0"
+          : "0 50% 50% 50%";
+      shape.style.left = `${Math.random() * 100}%`;
+      shape.style.top = `${Math.random() * 100}%`;
+      shape.style.animationDuration = `${Math.random() * 10 + 10}s`;
+      shape.style.animationDelay = `${Math.random() * 5}s`;
+      container.appendChild(shape);
     }
-
-    function animation(currentTime) {
-      if (startTime === null) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const run = ease(timeElapsed, startPosition, distance, duration);
-      window.scrollTo(0, run);
-      if (timeElapsed < duration) requestAnimationFrame(animation);
-    }
-
-    requestAnimationFrame(animation);
-  }
-}
-
-// Apply smooth scrolling to all internal links
-navLinks.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    const target = link.getAttribute("href");
-    smoothScroll(target, 1000);
   });
-});
+}
+
+// Smooth scroll to sections
+function setupSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute("href")).scrollIntoView({
+        behavior: "smooth",
+      });
+    });
+  });
+}
+
+// Animate elements on scroll
+function animateOnScroll() {
+  const elements = document.querySelectorAll(".animate-on-scroll");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  elements.forEach((element) => {
+    observer.observe(element);
+  });
+}
+
+// Smooth scroll to next/previous section on mouse wheel
+function setupSectionScroll() {
+  const sections = document.querySelectorAll(".section");
+  let currentSectionIndex = 0;
+  let isScrolling = false;
+
+  window.addEventListener("wheel", (e) => {
+    if (!isScrolling) {
+      isScrolling = true;
+      const direction = e.deltaY > 0 ? 1 : -1;
+      currentSectionIndex = Math.max(
+        0,
+        Math.min(sections.length - 1, currentSectionIndex + direction)
+      );
+
+      sections[currentSectionIndex].scrollIntoView({ behavior: "smooth" });
+
+      setTimeout(() => {
+        isScrolling = false;
+      }, 1000); // Adjust this value to control scroll sensitivity
+    }
+  });
+}
+
+// Initialize all functions
+function init() {
+  addRandomShapes();
+  setupSmoothScroll();
+  animateOnScroll();
+  setupSectionScroll();
+}
+
+// Run initialization when the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", init);

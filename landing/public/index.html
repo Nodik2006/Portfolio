@@ -1,327 +1,483 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>📍Nodirbek Zayniddinov</title>
-    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <title>Nodirbek Zayniddinov | Web Developer</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+      :root {
+        --color-primary: #4831d4;
+        --color-secondary: #ccf381;
+        --color-white: #ffffff;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+
+      .bg-primary {
+        background-color: var(--color-primary);
+      }
+      .bg-secondary {
+        background-color: var(--color-secondary);
+      }
+      .text-primary {
+        color: var(--color-primary);
+      }
+      .text-secondary {
+        color: var(--color-secondary);
+      }
+
+      .section {
+        height: 100vh;
+        scroll-snap-align: start;
+      }
+
+      .scroll-container {
+        scroll-snap-type: y mandatory;
+        overflow-y: scroll;
+        height: 100vh;
+      }
+
+      .hero-bg {
+        background: linear-gradient(
+          135deg,
+          var(--color-primary) 0%,
+          var(--color-primary) 33%,
+          var(--color-secondary) 33%,
+          var(--color-secondary) 66%,
+          var(--color-white) 66%,
+          var(--color-white) 100%
+        );
+      }
+
+      .random-shapes {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 0;
+      }
+
+      .shape {
+        position: absolute;
+        opacity: 0.1;
+        animation: float 20s infinite ease-in-out;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(180deg);
+        }
+      }
+
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s, transform 0.5s;
+      }
+
+      .animate-on-scroll.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
   </head>
   <body>
-    <header>
-      <div class="container">
-        <nav>
-          <div class="logo-container">
-            <a href="#hero">
-              <img
-                src="../assets/img/logo.jpg"
-                alt="Nodirbek Zayniddinov Logo"
-              />
-            </a>
-          </div>
-          <div
-            class="menu-icon"
-            id="menu-icon"
-            aria-expanded="false"
-            aria-label="Открыть/закрыть меню"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <ul id="navbar">
-            <li><a href="#about">About</a></li>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <div class="contact-info">
-              <p>
-                Email:
-                <a href="mailto:flash369636@gmail.com">flash369636@gmail.com</a>
-              </p>
-              <p>
-                Contact:
-                <a href="https://n1dleee.t.me" target="_blank">n1dleee.t.me</a>
-              </p>
-              <div class="social-links">
-                <a href="https://www.instagram.com/n1dleee.png/" target="_blank"
-                  ><i class="fab fa-instagram"></i> Instagram</a
-                >
-                <a href="https://www.linkedin.com/in/n1dleee/" target="_blank"
-                  ><i class="fab fa-linkedin"></i> LinkedIn</a
-                >
-                <a href="https://github.com/Nodik2006" target="_blank"
-                  ><i class="fab fa-github"></i> GitHub</a
-                >
-              </div>
-            </div>
-          </ul>
-        </nav>
-      </div>
+    <header
+      class="fixed w-full top-0 z-50 bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg"
+    >
+      <nav
+        class="container mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <div class="text-2xl font-bold text-primary">NZ</div>
+        <ul class="flex space-x-6">
+          <li>
+            <a href="#hero" class="hover:text-secondary transition duration-300"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="#about"
+              class="hover:text-secondary transition duration-300"
+              >About</a
+            >
+          </li>
+          <li>
+            <a href="#work" class="hover:text-secondary transition duration-300"
+              >Work</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="hover:text-secondary transition duration-300"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </nav>
     </header>
-    <main>
-      <section id="hero">
-        <div class="hero">
-          <h1 style="text-align: center">Hi, I'm Nodirbek Zayniddinov</h1>
-          <p style="text-align: center">
-            A passionate developer building web experiences.
-          </p>
-          <a href="#portfolio" class="btn">View My Work</a>
-        </div>
-      </section>
-    </main>
 
-    <script>
-      function toggleNavbar() {
-        var navbar = document.getElementById("navbar");
-        navbar.classList.toggle("expanded");
-      }
-    </script>
-
-    <section id="about">
-      <div class="container">
-        <h2>About Me</h2>
-        <div class="about-content">
-          <div class="about-image">
-            <img src="../assets/img/handsome.jpg" alt="Nodirbek Zayniddinov" />
+    <div class="scroll-container">
+      <main>
+        <section
+          id="hero"
+          class="section hero-bg flex items-center justify-center relative"
+        >
+          <div class="text-center z-10">
+            <h1
+              class="text-5xl md:text-7xl font-bold mb-4 animate-pulse text-white"
+            >
+              Nodirbek Zayniddinov
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 text-primary">
+              Full-Stack Developer & UI/UX Enthusiast
+            </p>
+            <a
+              href="#work"
+              class="bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-secondary transition duration-300 inline-block"
+              >View My Work</a
+            >
           </div>
-          <div class="about-text">
-            <p>
-              Hello! I'm Nodirbek Zayniddinov, a web developer with a passion
-              for creating interactive and dynamic user experiences. With
-              expertise in
-              <a href="https://en.wikipedia.org/wiki/HTML" target="_blank"
-                >HTML</a
-              >,
-              <a href="https://en.wikipedia.org/wiki/CSS" target="_blank">CSS</a
-              >,
-              <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank"
-                >JavaScript</a
-              >, and modern frameworks like
-              <a
-                href="https://en.wikipedia.org/wiki/React_(JavaScript_library)"
-                target="_blank"
-                >React</a
+        </section>
+
+        <section
+          id="about"
+          class="section bg-white flex items-center justify-center relative"
+        >
+          <div class="random-shapes">
+            <!-- Shapes will be added here via JavaScript -->
+          </div>
+          <div class="container mx-auto px-4 z-10">
+            <h2
+              class="text-4xl font-bold mb-12 text-center text-primary animate-on-scroll"
+            >
+              About Me
+            </h2>
+            <div class="flex flex-col md:flex-row gap-12">
+              <div class="md:w-1/2 animate-on-scroll">
+                <p class="mb-4 text-lg text-primary">
+                  Hello! I'm Nodirbek, a passionate web developer with a keen
+                  eye for creating interactive and dynamic user experiences. My
+                  expertise lies in HTML, CSS, JavaScript, and modern frameworks
+                  like React and Vue.
+                </p>
+                <p class="text-lg text-primary">
+                  I thrive on turning complex problems into simple, beautiful,
+                  and intuitive designs. When I'm not coding, you'll find me
+                  exploring new technologies or contributing to open-source
+                  projects.
+                </p>
+              </div>
+              <div class="md:w-1/2 animate-on-scroll">
+                <h3 class="text-2xl font-semibold mb-6 text-primary">
+                  My Skills
+                </h3>
+                <ul class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  <li
+                    class="bg-secondary text-primary p-3 rounded-lg text-center font-semibold"
+                  >
+                    HTML5
+                  </li>
+                  <li
+                    class="bg-secondary text-primary p-3 rounded-lg text-center font-semibold"
+                  >
+                    CSS3
+                  </li>
+                  <li
+                    class="bg-secondary text-primary p-3 rounded-lg text-center font-semibold"
+                  >
+                    JavaScript
+                  </li>
+                  <li
+                    class="bg-secondary text-primary p-3 rounded-lg text-center font-semibold"
+                  >
+                    React
+                  </li>
+                  <li
+                    class="bg-secondary text-primary p-3 rounded-lg text-center font-semibold"
+                  >
+                    Vue.js
+                  </li>
+                  <li
+                    class="bg-secondary text-primary p-3 rounded-lg text-center font-semibold"
+                  >
+                    Node.js
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="work"
+          class="section bg-primary flex items-center justify-center relative"
+        >
+          <div class="random-shapes">
+            <!-- Shapes will be added here via JavaScript -->
+          </div>
+          <div class="container mx-auto px-4 z-10">
+            <h2
+              class="text-4xl font-bold mb-12 text-center text-secondary animate-on-scroll"
+            >
+              My Work
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div
+                class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll"
               >
-              and
-              <a href="https://en.wikipedia.org/wiki/Vue.js" target="_blank"
-                >Vue</a
-              >, I build responsive and visually appealing websites.
+                <h3 class="text-xl font-semibold mb-2 text-primary">
+                  Voice Assistant
+                </h3>
+                <p class="mb-4 text-gray-700">
+                  A Python-based voice assistant with various functionalities.
+                </p>
+                <a
+                  href="https://github.com/Nodik2006/VoiceAssistant"
+                  class="inline-block bg-secondary text-primary px-4 py-2 rounded-full font-semibold hover:bg-primary hover:text-white transition duration-300"
+                  target="_blank"
+                  >View Project</a
+                >
+              </div>
+              <div
+                class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll"
+              >
+                <h3 class="text-xl font-semibold mb-2 text-primary">
+                  InsightHub
+                </h3>
+                <p class="mb-4 text-gray-700">
+                  Website for finding investors for prospective students.
+                </p>
+                <a
+                  href="https://insight-hub.org"
+                  class="inline-block bg-secondary text-primary px-4 py-2 rounded-full font-semibold hover:bg-primary hover:text-white transition duration-300"
+                  target="_blank"
+                  >View Project</a
+                >
+              </div>
+              <div
+                class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll"
+              >
+                <h3 class="text-xl font-semibold mb-2 text-primary">
+                  Portfolio
+                </h3>
+                <p class="mb-4 text-gray-700">
+                  My personal portfolio website showcasing my projects and
+                  skills.
+                </p>
+                <a
+                  href="https://github.com/Nodik2006/Portfolio"
+                  class="inline-block bg-secondary text-primary px-4 py-2 rounded-full font-semibold hover:bg-primary hover:text-white transition duration-300"
+                  target="_blank"
+                  >View Project</a
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="contact"
+          class="section bg-white flex items-center justify-center"
+        >
+          <div class="container mx-auto px-4 max-w-3xl">
+            <h2
+              class="text-5xl font-bold mb-4 text-center text-primary animate-on-scroll"
+            >
+              Send me a message!
+            </h2>
+            <p
+              class="text-xl mb-12 text-center text-gray-600 animate-on-scroll"
+            >
+              Got a question or proposal, or just want to say hello? Go ahead.
             </p>
-            <p>
-              When I'm not coding, I enjoy exploring new technologies,
-              contributing to open-source projects, and sharing knowledge
-              through blogging.
-            </p>
-            <div class="skills">
-              <h3>My Skills</h3>
-              <div class="skill-list">
-                <div class="skill-item">
-                  <i class="fab fa-html5"></i>
-                  <p>
-                    <a href="https://en.wikipedia.org/wiki/HTML" target="_blank"
-                      >HTML5</a
-                    >
-                  </p>
+            <form action="#" method="POST" class="space-y-6 animate-on-scroll">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    for="name"
+                    class="block text-sm font-medium text-gray-600 mb-1"
+                    >Your Name</label
+                  >
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    placeholder="Enter your name"
+                    class="w-full p-3 border-b border-gray-300 focus:border-primary focus:outline-none text-primary placeholder-gray-400"
+                  />
                 </div>
-                <div class="skill-item">
-                  <i class="fab fa-css3-alt"></i>
-                  <p>
-                    <a href="https://en.wikipedia.org/wiki/CSS" target="_blank"
-                      >CSS3</a
-                    >
-                  </p>
+                <div>
+                  <label
+                    for="email"
+                    class="block text-sm font-medium text-gray-600 mb-1"
+                    >Email Address</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    placeholder="Enter your email address"
+                    class="w-full p-3 border-b border-gray-300 focus:border-primary focus:outline-none text-primary placeholder-gray-400"
+                  />
                 </div>
-                <div class="skill-item">
-                  <i class="fab fa-js"></i>
-                  <p>
-                    <a
-                      href="https://en.wikipedia.org/wiki/JavaScript"
-                      target="_blank"
-                      >JavaScript</a
-                    >
-                  </p>
-                </div>
-                <div class="skill-item">
-                  <i class="fab fa-python"></i>
-                  <p>
-                    <a
-                      href="https://en.wikipedia.org/wiki/Python_(programming_language)"
-                      target="_blank"
-                      >Python</a
-                    >
-                  </p>
-                </div>
-                <div class="skill-item">
-                  <i class="fa fa-flask"></i>
-                  <p>
-                    <a
-                      href="https://en.wikipedia.org/wiki/Flask_(web_framework)"
-                      target="_blank"
-                      >Flask</a
-                    >
-                  </p>
-                </div>
-                <div class="skill-item">
-                  <i class="fas fa-database"></i>
-                  <p>
-                    <a
-                      href="https://en.wikipedia.org/wiki/Node.js"
-                      target="_blank"
-                      >Node.js</a
-                    >
-                  </p>
-                </div>
+              </div>
+              <div>
+                <label
+                  for="message"
+                  class="block text-sm font-medium text-gray-600 mb-1"
+                  >Your Message</label
+                >
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  placeholder="Hi, I think we need a design system for our products at Company X. How soon can you hop on to discuss this?"
+                  class="w-full p-3 border-b border-gray-300 focus:border-primary focus:outline-none text-primary placeholder-gray-400 h-32 resize-none"
+                ></textarea>
+              </div>
+              <div class="flex justify-center">
+                <button
+                  type="submit"
+                  class="bg-primary text-white px-12 py-3 rounded-full font-semibold hover:bg-secondary hover:text-primary transition duration-300 flex items-center"
+                >
+                  SHOOT
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 ml-2"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </main>
+
+      <footer
+        class="section flex items-center justify-center"
+        style="background-color: #3d155f"
+      >
+        <div class="container mx-auto px-8 max-w-7xl">
+          <div class="flex flex-col h-full justify-between py-12">
+            <div class="flex flex-col md:flex-row justify-between mb-16">
+              <div class="mb-12 md:mb-0">
+                <h3 class="text-4xl font-bold mb-8 text-white">SAY HELLO</h3>
+                <p class="mb-4 text-xl" style="color: #b3d175">
+                  <a
+                    href="mailto:flash369636@gmail.com"
+                    class="hover:text-white transition duration-300"
+                    >flash369636@gmail.com</a
+                  >
+                </p>
+                <p class="text-xl" style="color: #b3d175">
+                  <a
+                    href="https://n1dleee.t.me"
+                    target="_blank"
+                    class="hover:text-white transition duration-300"
+                    >n1dleee.t.me</a
+                  >
+                </p>
+              </div>
+              <div>
+                <nav>
+                  <ul class="space-y-6">
+                    <li>
+                      <a
+                        href="#work"
+                        class="text-xl hover:text-white transition duration-300"
+                        style="color: #b3d175"
+                        >My Work</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#about"
+                        class="text-xl hover:text-white transition duration-300"
+                        style="color: #b3d175"
+                        >About Me</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="text-xl hover:text-white transition duration-300"
+                        style="color: #b3d175"
+                        >My Résumé</a
+                      >
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+            <div
+              class="pt-12 border-t border-white border-opacity-20 flex flex-col md:flex-row justify-between items-center"
+            >
+              <p class="mb-8 md:mb-0 text-xl" style="color: #b3d175">
+                &copy; 2024 Nodirbek Zayniddinov. All rights reserved.
+              </p>
+              <div class="flex space-x-12">
+                <a
+                  href="https://www.instagram.com/n1dleee.png/"
+                  target="_blank"
+                  class="text-2xl hover:text-white transition duration-300"
+                  style="color: #b3d175"
+                  >IN</a
+                >
+                <a
+                  href="https://github.com/Nodik2006"
+                  target="_blank"
+                  class="text-2xl hover:text-white transition duration-300"
+                  style="color: #b3d175"
+                  >GH</a
+                >
+                <a
+                  href="https://www.linkedin.com/in/n1dleee/"
+                  target="_blank"
+                  class="text-2xl hover:text-white transition duration-300"
+                  style="color: #b3d175"
+                  >LN</a
+                >
+                <a
+                  href="https://www.youtube.com/@n1dleee"
+                  target="_blank"
+                  class="text-2xl hover:text-white transition duration-300"
+                  style="color: #b3d175"
+                  >YT</a
+                >
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </footer>
+    </div>
 
-    <!-- Portfolio Section -->
-    <section id="work">
-      <h2>My Work</h2>
-      <div class="project-container">
-        <div class="project">
-          <a href="https://github.com/Nodik2006/VoiceAssistant">
-            <div class="icon">Voice Assistant</div>
-            <div class="info">
-              A Python-based voice assistant with various functionalities.
-            </div>
-          </a>
-        </div>
-        <div class="project">
-          <a href="https://insight-hub.org">
-            <div class="icon">InsightHub</div>
-            <div class="info">
-              Website for finding investors for prospective students.
-            </div>
-          </a>
-        </div>
-        <div class="project">
-          <a href="https://github.com/Nodik2006/Portfolio"></a>
-          <div class="icon">Portfolio</div>
-          <div class="info">Source code of this website</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Blog Section -->
-    <section id="blog">
-      <div class="container">
-        <h2>Blog</h2>
-        <div class="blog-posts">
-          <div class="blog-post">
-            <h3>Spark Success: Igniting Innovation</h3>
-            <p>
-              Spark Success, previously a team, has evolved into an organization
-              dedicated to empowering young programmers. They will organize and
-              participate in projects and hackathons, fostering innovation,
-              collaboration, and growth among aspiring developers. They invite
-              like-minded individuals and organizations to join them in their
-              mission to transform ideas into reality through technology.
-            </p>
-            <a
-              href="https://www.linkedin.com/feed/update/urn:li:activity:7223265953621372928/"
-              class="btn"
-              >Read More</a
-            >
-          </div>
-          <div class="blog-post">
-            <h3>
-              Spark Success Shines at Amity University Hackathon with LingoLoop
-            </h3>
-            <p>
-              Spark Success team participated in the Amity University Hackathon
-              in Tashkent and won third place with their language learning
-              platform, LingoLoop. LingoLoop offers unique features like chat,
-              video chat, and online interactions to provide an immersive
-              language learning experience.
-            </p>
-            <a
-              href="https://www.linkedin.com/feed/update/urn:li:activity:7202324513919766528/"
-              class="btn"
-              >Read More</a
-            >
-          </div>
-          <!-- Add more blog posts -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-      <div class="container">
-        <h2>Contact Me</h2>
-        <div class="contact-content">
-          <form action="#" method="POST">
-            <div class="form-group">
-              <label for="name">Name:</label>
-              <input type="text" id="name" name="name" required />
-            </div>
-
-            <div class="form-group">
-              <label for="email">Email:</label>
-              <input type="email" id="email" name="email" required />
-            </div>
-
-            <div class="form-group">
-              <label for="message">Message:</label>
-              <textarea id="message" name="message" required></textarea>
-            </div>
-
-            <button type="submit" class="btn">Send Message</button>
-          </form>
-          <div class="contact-info">
-            <h3>Get in Touch</h3>
-            <p>
-              Feel free to reach out for collaborations or just a friendly chat!
-            </p>
-            <div class="social-links">
-              <a href="https://www.instagram.com/n1dleee.png/"
-                ><i class="fab fa-instagram"></i> Instagram</a
-              >
-              <a href="https://www.linkedin.com/in/n1dleee/"
-                ><i class="fab fa-linkedin"></i> LinkedIn</a
-              >
-              <a href="https://github.com/Nodik2006"
-                ><i class="fab fa-github"></i> GitHub</a
-              >
-              <!-- Add more social links -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <p>&copy; 2024 Nodirbek Zayniddinov. All rights reserved.</p>
-        <div class="footer-social">
-          <a href="https://www.instagram.com/n1dleee.png/"
-            ><i class="fab fa-instagram"></i
-          ></a>
-          <a href="https://www.linkedin.com/in/n1dleee/"
-            ><i class="fab fa-linkedin"></i
-          ></a>
-          <a href="https://github.com/Nodik2006"
-            ><i class="fab fa-github"></i
-          ></a>
-          <!-- Add more social icons -->
-        </div>
-      </div>
-    </footer>
-
-    <!-- JavaScript for Navbar Toggle and Animations -->
     <script src="../assets/js/index.js"></script>
   </body>
 </html>
