@@ -1,13 +1,38 @@
-// Add random shapes to the background
-function addRandomShapes() {
-  const shapes = ["circle", "square", "triangle"];
-  const colors = ["#4831D4", "#CCF381", "#FFFFFF"];
-  const containers = document.querySelectorAll(".random-shapes");
+document.addEventListener("DOMContentLoaded", () => {
+  function setupNavigation() {
+    const navToggle = document.querySelector(".nav-toggle");
+    const navClose = document.querySelector(".nav-close");
+    const navDropdown = document.querySelector(".nav-dropdown");
 
-  containers.forEach((container) => {
+    navToggle.addEventListener("click", () => {
+      if (navDropdown.classList.contains("show")) {
+        navDropdown.classList.remove("show");
+        navToggle.classList.remove("show");
+      } else {
+        navDropdown.classList.add("show");
+        navToggle.classList.add("show");
+      }
+    });
+
+    navClose.addEventListener("click", () => {
+      navDropdown.classList.remove("show");
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!event.target.closest(".nav-menu")) {
+        navDropdown.classList.remove("show");
+      }
+    });
+  }
+
+  function addRandomShapes() {
+    const shapes = ["circle", "square", "triangle"];
+    const colors = ["#4831D4", "#CCF381", "#FFFFFF"];
+    const container = document.querySelector(".hero-section");
+
     for (let i = 0; i < 20; i++) {
       const shape = document.createElement("div");
-      shape.classList.add("shape");
+      shape.classList.add("shape", "hero-shape");
       const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
       shape.style.backgroundColor =
         colors[Math.floor(Math.random() * colors.length)];
@@ -19,77 +44,94 @@ function addRandomShapes() {
           : randomShape === "square"
           ? "0"
           : "0 50% 50% 50%";
-      shape.style.left = `${Math.random() * 100}%`;
-      shape.style.top = `${Math.random() * 100}%`;
+
+      // Устанавливаем случайные left и top, убеждаемся, что фигуры внутри контейнера
+      const containerRect = container.getBoundingClientRect();
+      const maxLeft = containerRect.width - parseInt(shape.style.width);
+      const maxTop = containerRect.height - parseInt(shape.style.height);
+      shape.style.left = `${Math.random() * maxLeft}px`;
+      shape.style.top = `${Math.random() * maxTop}px`;
+
       shape.style.animationDuration = `${Math.random() * 10 + 10}s`;
       shape.style.animationDelay = `${Math.random() * 5}s`;
       container.appendChild(shape);
     }
-  });
-}
+  }
 
-// Smooth scroll to sections
-function setupSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      document.querySelector(this.getAttribute("href")).scrollIntoView({
-        behavior: "smooth",
-      });
-    });
-  });
-}
-
-// Animate elements on scroll
-function animateOnScroll() {
-  const elements = document.querySelectorAll(".animate-on-scroll");
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
+  function setupSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute("href");
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "smooth" });
         }
       });
-    },
-    { threshold: 0.1 }
-  );
+    });
+  }
 
-  elements.forEach((element) => {
-    observer.observe(element);
-  });
-}
+  function updateHeaderColor() {
+    const logoLink = document.querySelector(".logo a");
 
-// Smooth scroll to next/previous section on mouse wheel
-function setupSectionScroll() {
-  const sections = document.querySelectorAll(".section");
-  let currentSectionIndex = 0;
-  let isScrolling = false;
+    const currentSectionId = window.location.pathname.substring(1) || "hero";
 
-  window.addEventListener("wheel", (e) => {
-    if (!isScrolling) {
-      isScrolling = true;
-      const direction = e.deltaY > 0 ? 1 : -1;
-      currentSectionIndex = Math.max(
-        0,
-        Math.min(sections.length - 1, currentSectionIndex + direction)
-      );
-
-      sections[currentSectionIndex].scrollIntoView({ behavior: "smooth" });
-
-      setTimeout(() => {
-        isScrolling = false;
-      }, 1000); // Adjust this value to control scroll sensitivity
+    switch (currentSectionId) {
+      case "hero":
+      case "work":
+        logoLink.style.color = "#ccf381";
+        break;
+      case "about":
+      case "contact":
+        logoLink.style.color = "#4831d4";
+        break;
+      default:
+        logoLink.style.color = "#ccf381";
     }
-  });
-}
+  }
 
-// Initialize all functions
-function init() {
-  addRandomShapes();
-  setupSmoothScroll();
-  animateOnScroll();
-  setupSectionScroll();
-}
+  function animateHeroElements() {
+    const heroDescriptions = document.querySelectorAll(".hero-description");
+    const ctaButton = document.querySelector(".cta-button");
 
-// Run initialization when the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", init);
+    heroDescriptions.forEach((desc, index) => {
+      desc.style.animationDelay = `${0.6 + index * 0.2}s`;
+      desc.classList.add("animate-on-scroll");
+    });
+
+    ctaButton.style.animationDelay = `${1 + heroDescriptions.length * 0.2}s`;
+    ctaButton.classList.add("animate-on-scroll");
+  }
+
+  function animateOnScroll() {
+    const elements = document.querySelectorAll(".animate-on-scroll");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationName = "fadeInUp";
+            entry.target.style.animationDuration = "0.8s";
+            entry.target.style.animationFillMode = "forwards";
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    elements.forEach((element) => {
+      observer.observe(element);
+    });
+  }
+
+  function init() {
+    setupNavigation();
+    addRandomShapes();
+    setupSmoothScroll();
+    animateHeroElements();
+    animateOnScroll();
+    updateHeaderColor();
+  }
+
+  init();
+});

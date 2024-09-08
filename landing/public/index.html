@@ -12,158 +12,98 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
-
-      :root {
-        --color-primary: #4831d4;
-        --color-secondary: #ccf381;
-        --color-white: #ffffff;
-      }
-
-      body {
-        font-family: "Poppins", sans-serif;
-      }
-
-      .bg-primary {
-        background-color: var(--color-primary);
-      }
-      .bg-secondary {
-        background-color: var(--color-secondary);
-      }
-      .text-primary {
-        color: var(--color-primary);
-      }
-      .text-secondary {
-        color: var(--color-secondary);
-      }
-
-      .section {
-        height: 100vh;
-        scroll-snap-align: start;
-      }
-
-      .scroll-container {
-        scroll-snap-type: y mandatory;
-        overflow-y: scroll;
-        height: 100vh;
-      }
-
-      .hero-bg {
-        background: linear-gradient(
-          135deg,
-          var(--color-primary) 0%,
-          var(--color-primary) 33%,
-          var(--color-secondary) 33%,
-          var(--color-secondary) 66%,
-          var(--color-white) 66%,
-          var(--color-white) 100%
-        );
-      }
-
-      .random-shapes {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        z-index: 0;
-      }
-
-      .shape {
-        position: absolute;
-        opacity: 0.1;
-        animation: float 20s infinite ease-in-out;
-      }
-
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0) rotate(0deg);
-        }
-        50% {
-          transform: translateY(-20px) rotate(180deg);
-        }
-      }
-
-      .animate-on-scroll {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.5s, transform 0.5s;
-      }
-
-      .animate-on-scroll.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    </style>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
   </head>
+
   <body>
-    <header
-      class="fixed w-full top-0 z-50 bg-white bg-opacity-90 backdrop-filter backdrop-blur-lg"
-    >
-      <nav
-        class="container mx-auto px-4 py-4 flex justify-between items-center"
-      >
-        <div class="text-2xl font-bold text-primary">NZ</div>
-        <ul class="flex space-x-6">
-          <li>
-            <a href="#hero" class="hover:text-secondary transition duration-300"
-              >Home</a
+    <header>
+      <div class="logo">
+        <a href="/">n1dleee</a>
+      </div>
+      <nav class="nav-menu">
+        <button class="nav-toggle">☰</button>
+        <div class="nav-dropdown">
+          <button class="nav-toggle nav-close">X</button>
+          <a href="/work">My Work</a>
+          <a href="#shelf">My Shelf</a>
+          <a href="#resume">My Résumé</a>
+          <h1>Say Hello</h1>
+          <a href="mailto:flash369636@gmail.com">flash369636@gmail.com</a>
+          <a href="https://t.me/n1dleee">t.me/n1dleee</a>
+          <div>
+            <a href="https://github.com/n1dlee" class="social-link">GH</a>
+            <a href="https://www.linkedin.com/in/n1dleee/" class="social-link"
+              >LN</a
             >
-          </li>
-          <li>
-            <a
-              href="#about"
-              class="hover:text-secondary transition duration-300"
-              >About</a
+            <a href="https://www.instagram.com/n1dleee.png/" class="social-link"
+              >IN</a
             >
-          </li>
-          <li>
-            <a href="#work" class="hover:text-secondary transition duration-300"
-              >Work</a
+            <a href="https://www.youtube.com/@n1dleee" class="social-link"
+              >YT</a
             >
-          </li>
-          <li>
-            <a
-              href="#contact"
-              class="hover:text-secondary transition duration-300"
-              >Contact</a
-            >
-          </li>
-        </ul>
+          </div>
+        </div>
       </nav>
     </header>
 
     <div class="scroll-container">
+      <div class="navigation">
+        <ul>
+          <li data-menuanchor="firstPage">
+            <a href="#hero"><span></span></a>
+          </li>
+          <li data-menuanchor="secondPage">
+            <a href="#about"><span></span></a>
+          </li>
+          <li data-menuanchor="thirdPage">
+            <a href="#work"><span></span></a>
+          </li>
+          <li data-menuanchor="fourthPage">
+            <a href="#contact"><span></span></a>
+          </li>
+        </ul>
+      </div>
       <main>
-        <section
-          id="hero"
-          class="section hero-bg flex items-center justify-center relative"
-        >
-          <div class="text-center z-10">
-            <h1
-              class="text-5xl md:text-7xl font-bold mb-4 animate-pulse text-white"
-            >
-              Nodirbek Zayniddinov
+        <section id="hero" class="hero-section section">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              <span class="hero-title-line">Full-Stack</span>
+              <span class="hero-title-line">Developer.</span>
             </h1>
-            <p class="text-xl md:text-2xl mb-8 text-primary">
-              Full-Stack Developer & UI/UX Enthusiast
+            <p class="hero-subtitle">
+              I like to craft solid and scalable products with great user
+              experiences.
             </p>
-            <a
-              href="#work"
-              class="bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-secondary transition duration-300 inline-block"
-              >View My Work</a
+            <p class="hero-description animate-on-scroll">
+              Highly skilled at progressive enhancement, design systems & UI
+              Engineering.
+            </p>
+            <p class="hero-description animate-on-scroll">
+              Proven experience building successful products for clients across
+              several countries.
+            </p>
+            <a href="#contact" class="cta-button animate-on-scroll"
+              >Get in touch</a
             >
           </div>
+          <div class="hero-image-container">
+            <img
+              src="/assets/img/handsome.jpg"
+              alt="Developer"
+              class="hero-image"
+            />
+          </div>
+          <div class="hero-shape shape-1"></div>
+          <div class="hero-shape shape-2"></div>
+          <div class="hero-shape shape-3"></div>
+          <div class="hero-shape shape-4"></div>
         </section>
 
         <section
           id="about"
           class="section bg-white flex items-center justify-center relative"
         >
-          <div class="random-shapes">
-            <!-- Shapes will be added here via JavaScript -->
-          </div>
+          <div class="random-shapes"></div>
           <div class="container mx-auto px-4 z-10">
             <h2
               class="text-4xl font-bold mb-12 text-center text-primary animate-on-scroll"
@@ -230,64 +170,83 @@
           id="work"
           class="section bg-primary flex items-center justify-center relative"
         >
-          <div class="random-shapes">
-            <!-- Shapes will be added here via JavaScript -->
-          </div>
+          <div class="random-shapes"></div>
           <div class="container mx-auto px-4 z-10">
-            <h2
-              class="text-4xl font-bold mb-12 text-center text-secondary animate-on-scroll"
-            >
-              My Work
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div
-                class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll"
+                class="md:col-span-1 p-6 rounded-lg bg-purple-900 shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll"
               >
-                <h3 class="text-xl font-semibold mb-2 text-primary">
-                  Voice Assistant
-                </h3>
-                <p class="mb-4 text-gray-700">
-                  A Python-based voice assistant with various functionalities.
-                </p>
-                <a
-                  href="https://github.com/Nodik2006/VoiceAssistant"
-                  class="inline-block bg-secondary text-primary px-4 py-2 rounded-full font-semibold hover:bg-primary hover:text-white transition duration-300"
-                  target="_blank"
-                  >View Project</a
-                >
+                <article class="cavalier">
+                  <div class="cavalier-content">
+                    <h1>
+                      I build &amp; <br />
+                      design stuff
+                    </h1>
+                    <p>
+                      Open source <br />
+                      projects, web apps <br />
+                      and experimentals.
+                    </p>
+                  </div>
+                </article>
+                <a class="sauce-button hKeZLG" href="/work">
+                  <div class="sauce-button__content">
+                    See my work
+                    <svg
+                      width="72"
+                      height="22"
+                      viewBox="0 0 72 22"
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="bow-arrow"
+                    >
+                      <path
+                        fill="none"
+                        stroke="white"
+                        stroke-width="2"
+                        stroke-miterlimit="0"
+                        d="M.043 11.119h70.714M60.917 1.319l9.8 9.8-9.8 9.8"
+                      ></path>
+                    </svg>
+                  </div>
+                </a>
               </div>
+
               <div
-                class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll"
+                class="md:col-span-1 p-6 rounded-lg bg-purple-900 shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll"
               >
-                <h3 class="text-xl font-semibold mb-2 text-primary">
-                  InsightHub
-                </h3>
-                <p class="mb-4 text-gray-700">
-                  Website for finding investors for prospective students.
-                </p>
-                <a
-                  href="https://insight-hub.org"
-                  class="inline-block bg-secondary text-primary px-4 py-2 rounded-full font-semibold hover:bg-primary hover:text-white transition duration-300"
-                  target="_blank"
-                  >View Project</a
-                >
-              </div>
-              <div
-                class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll"
-              >
-                <h3 class="text-xl font-semibold mb-2 text-primary">
-                  Portfolio
-                </h3>
-                <p class="mb-4 text-gray-700">
-                  My personal portfolio website showcasing my projects and
-                  skills.
-                </p>
-                <a
-                  href="https://github.com/Nodik2006/Portfolio"
-                  class="inline-block bg-secondary text-primary px-4 py-2 rounded-full font-semibold hover:bg-primary hover:text-white transition duration-300"
-                  target="_blank"
-                  >View Project</a
-                >
+                <article class="cavalier" data-theme="electric">
+                  <div class="cavalier-content">
+                    <h1>
+                      I write, <br />
+                      sometimes
+                    </h1>
+                    <p>
+                      About hackathons, <br />
+                      studying, <br />
+                      learning and life.
+                    </p>
+                  </div>
+                </article>
+                <a class="sauce-button hKeZLG" href="/shelf">
+                  <div class="sauce-button__content">
+                    Read my Articles
+                    <svg
+                      width="72"
+                      height="22"
+                      viewBox="0 0 72 22"
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="bow-arrow"
+                    >
+                      <path
+                        fill="none"
+                        stroke="white"
+                        stroke-width="2"
+                        stroke-miterlimit="0"
+                        d="M.043 11.119h70.714M60.917 1.319l9.8 9.8-9.8 9.8"
+                      ></path>
+                    </svg>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
