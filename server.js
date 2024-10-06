@@ -58,6 +58,10 @@ app.get("/about", (req, res) => {
     res.sendFile(path.join(__dirname, "landing", "public", "index.html"));
 });
 
+app.get("/about-me", (req, res) => {
+  res.sendFile(path.join(__dirname, "landing", "public", "about.html"));
+});
+
 app.get("/shelf", (req, res) => {
     res.sendFile(path.join(__dirname, "landing", "public", "shelf.html"));
 });
