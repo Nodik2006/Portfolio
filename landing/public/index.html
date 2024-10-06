@@ -25,8 +25,8 @@
         <div class="nav-dropdown">
           <button class="nav-toggle nav-close">X</button>
           <a href="/work">My Work</a>
-          <a href="#shelf">My Shelf</a>
-          <a href="#resume">My Résumé</a>
+          <a href="/shelf">My Shelf</a>
+          <a href="#resume" id="resume-link">My Résumé</a>
           <h1>Say Hello</h1>
           <a href="mailto:flash369636@gmail.com">flash369636@gmail.com</a>
           <a href="https://t.me/n1dleee">t.me/n1dleee</a>
@@ -253,90 +253,95 @@
         </section>
 
         <section
-          id="contact"
-          class="section bg-white flex items-center justify-center"
-        >
-          <div class="container mx-auto px-4 max-w-3xl">
-            <h2
-              class="text-5xl font-bold mb-4 text-center text-primary animate-on-scroll"
-            >
-              Send me a message!
-            </h2>
-            <p
-              class="text-xl mb-12 text-center text-gray-600 animate-on-scroll"
-            >
-              Got a question or proposal, or just want to say hello? Go ahead.
-            </p>
-            <form action="#" method="POST" class="space-y-6 animate-on-scroll">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label
-                    for="name"
-                    class="block text-sm font-medium text-gray-600 mb-1"
-                    >Your Name</label
-                  >
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    placeholder="Enter your name"
-                    class="w-full p-3 border-b border-gray-300 focus:border-primary focus:outline-none text-primary placeholder-gray-400"
-                  />
-                </div>
-                <div>
-                  <label
-                    for="email"
-                    class="block text-sm font-medium text-gray-600 mb-1"
-                    >Email Address</label
-                  >
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    placeholder="Enter your email address"
-                    class="w-full p-3 border-b border-gray-300 focus:border-primary focus:outline-none text-primary placeholder-gray-400"
-                  />
-                </div>
+        id="contact"
+        class="section bg-white flex items-center justify-center"
+      >
+        <div class="container mx-auto px-4 max-w-3xl">
+          <h2
+            class="text-5xl font-bold mb-4 text-center text-primary animate-on-scroll"
+          >
+            Send me a message!
+          </h2>
+          <p
+            class="text-xl mb-12 text-center text-gray-600 animate-on-scroll"
+          >
+            Got a question or proposal, or just want to say hello? Go ahead.
+          </p>
+          <form
+            id="contact-form"
+            action="https://formspree.io/f/mpwzalvw"
+            method="POST"
+            class="space-y-6 animate-on-scroll"
+          >
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  for="name"
+                  class="block text-sm font-medium text-gray-600 mb-1"
+                  >Your Name</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="Enter your name"
+                  class="w-full p-3 border-b border-gray-300 focus:border-primary focus:outline-none text-primary placeholder-gray-400"
+                />
               </div>
               <div>
                 <label
-                  for="message"
+                  for="email"
                   class="block text-sm font-medium text-gray-600 mb-1"
-                  >Your Message</label
+                  >Email Address</label
                 >
-                <textarea
-                  id="message"
-                  name="message"
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
                   required
-                  placeholder="Hi, I think we need a design system for our products at Company X. How soon can you hop on to discuss this?"
-                  class="w-full p-3 border-b border-gray-300 focus:border-primary focus:outline-none text-primary placeholder-gray-400 h-32 resize-none"
-                ></textarea>
+                  placeholder="Enter your email address"
+                  class="w-full p-3 border-b border-gray-300 focus:border-primary focus:outline-none text-primary placeholder-gray-400"
+                />
               </div>
-              <div class="flex justify-center">
-                <button
-                  type="submit"
-                  class="bg-primary text-white px-12 py-3 rounded-full font-semibold hover:bg-secondary hover:text-primary transition duration-300 flex items-center"
+            </div>
+            <div>
+              <label
+                for="message"
+                class="block text-sm font-medium text-gray-600 mb-1"
+                >Your Message</label
+              >
+              <textarea
+                id="message"
+                name="message"
+                required
+                placeholder="Hi, I think we need a design system for our products at Company X. How soon can you hop on to discuss this?"
+                class="w-full p-3 border-b border-gray-300 focus:border-primary focus:outline-none text-primary placeholder-gray-400 h-32 resize-none"
+              ></textarea>
+            </div>
+            <div class="flex justify-center">
+              <button
+                type="submit"
+                class="bg-primary text-white px-12 py-3 rounded-full font-semibold hover:bg-secondary hover:text-primary transition duration-300 flex items-center"
+              >
+                SHOOT
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 ml-2"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
                 >
-                  SHOOT
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 ml-2"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </form>
-          </div>
-        </section>
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
       </main>
 
       <footer
@@ -438,5 +443,7 @@
     </div>
 
     <script src="../assets/js/index.js"></script>
+    <script src="../assets/js/resume.js" defer></script>
+    <script src="../assets/js/contact.js"></script>
   </body>
 </html>

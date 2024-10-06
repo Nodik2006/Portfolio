@@ -390,6 +390,18 @@ body {
   padding-top: 40px;
 }
 
+.logo.work{
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  color: #92ad5e;
+  font-size: 32px;
+  font-weight: bold;
+  z-index: 1000;
+  padding-left: 80px;
+  padding-top: 40px;
+}
+
 /* Добавляем отступы между иконками социальных сетей */
 .social-link {
   text-decoration: none;

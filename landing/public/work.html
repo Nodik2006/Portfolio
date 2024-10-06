@@ -17,7 +17,7 @@
 
   <body>
     <header>
-      <div class="logo">
+      <div class="logo work">
         <a href="/">n1dleee</a>
       </div>
       <nav class="nav-menu">
@@ -46,7 +46,24 @@
       </nav>
     </header>
 
-    <main></main>
+    <main class="relative">
+      <!-- Random shapes container -->
+      <div class="random-shapes"></div>
+    
+      <!-- Main content -->
+      <div class="container mx-auto px-4 py-24 min-h-screen relative z-10">
+        <!-- Hero Section -->
+        <section class="text-center mb-20">
+          <h1 class="text-6xl font-bold mb-4" style="color: #3d155f">/work.</h1>
+          <p class="text-xl text-gray-600">Selected work I've taken on in the past.</p>
+        </section>
+    
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Project cards will be dynamically inserted here -->
+        </div>
+      </div>
+    </main>
 
     <footer
       class="section flex items-center justify-center"
@@ -146,5 +163,6 @@
     </footer>
 
     <script src="../assets/js/index.js"></script>
+    <script src="../assets/js/github-projects.js"></script>
   </body>
 </html>
