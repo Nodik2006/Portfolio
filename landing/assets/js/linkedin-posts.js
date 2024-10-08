@@ -7,7 +7,7 @@ const FALLBACK_POSTS = [
         },
         text: "Hello everyone! I'm excited to share my latest web development projects and thoughts about technology.",
         created: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
-        postUrl: "#"
+        postUrl: "https://www.linkedin.com/in/n1dleee/"
     }
     // Add more fallback posts as needed
 ];
@@ -155,15 +155,8 @@ function showEmpty(container) {
 // Enhanced fetch function with timeout and better error handling
 async function fetchLinkedInPosts() {
     try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
-
-        const response = await fetch('/api/linkedin-posts', {
-            signal: controller.signal
-        });
+        const response = await fetch('/api/linkedin-posts');
         
-        clearTimeout(timeoutId);
-
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -172,7 +165,7 @@ async function fetchLinkedInPosts() {
         return data;
     } catch (error) {
         console.warn('Failed to fetch LinkedIn posts, using fallback data:', error);
-        return FALLBACK_POSTS; // Use fallback data instead of throwing
+        return FALLBACK_POSTS;
     }
 }
 

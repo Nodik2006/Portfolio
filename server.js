@@ -1,6 +1,5 @@
 const express = require("express");
 const path = require("path");
-const axios = require("axios");
 const dotenv = require("dotenv");
 const passport = require('passport');
 const session = require('express-session');
@@ -13,28 +12,34 @@ dotenv.config();
 const app = express();
 const port = 3000;
 
-// Session middleware (add this before other middleware)
+// Session middleware
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false
 }));
 
-// Initialize Passport (add this after session middleware)
+// Initialize Passport
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Middleware for static files from 'landing/public'
+// Static file middleware
 app.use(express.static(path.join(__dirname, "landing", "public")));
-
-// Middleware for static files from 'landing/assets'
 app.use("/assets", express.static(path.join(__dirname, "landing", "assets")));
-
-// Middleware for parsing JSON requests
 app.use(express.json());
 
-// LinkedIn routes
-app.use('/api', linkedInRoutes);
+// Authentication check middleware
+const isAuthenticated = (req, res, next) => {
+    console.log('Session:', req.session);
+    console.log('User:', req.user);
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.status(401).json({ error: 'Not authenticated. Please log in via LinkedIn.' });
+};
+
+// Protected LinkedIn routes
+app.use('/api/linkedin-posts', isAuthenticated, linkedInRoutes);
 
 // Authentication routes
 app.get('/auth/linkedin', passport.authenticate('linkedin', {
@@ -44,12 +49,21 @@ app.get('/auth/linkedin', passport.authenticate('linkedin', {
 app.get('/auth/linkedin/callback', 
     passport.authenticate('linkedin', { failureRedirect: '/login' }),
     (req, res) => {
-        // Successful authentication
+        console.log('LinkedIn authentication successful');
+        console.log('User:', req.user);
         res.redirect('/');
     }
 );
 
-// Routes for pages
+// Auth status endpoint
+app.get('/api/auth/status', (req, res) => {
+    res.json({
+        isAuthenticated: req.isAuthenticated(),
+        user: req.user
+    });
+});
+
+// Page routes
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "landing", "public", "index.html"));
 });
@@ -80,14 +94,6 @@ app.post("/contact", (req, res) => {
     console.log(`Received message from ${name} (${email}): ${message}`);
     res.send("Message sent!");
 });
-
-// Add authentication check middleware
-const isAuthenticated = (req, res, next) => {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.status(401).json({ error: 'Not authenticated' });
-};
 
 // Protected route example
 app.get('/api/profile', isAuthenticated, (req, res) => {
